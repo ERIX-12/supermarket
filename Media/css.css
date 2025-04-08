@@ -1,0 +1,38 @@
+p {
+  font-family: Verdana, Tahoma, Sans Serif;
+  font-size: 10pt;
+  color: blue}
+td {
+  font-family: Times New Roman, Georgia, Garamond;
+  font-size: 12pt;
+  color: #ff8080 }
+li {
+  font-family: Comic Sans MS, Comic Sans Serif, Sans Serif;
+  font-weight: italic; color: #ff0000 }
+li.fuchsia {
+  font-weight: bold;
+  color: #ff00ff }
+a:link {
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 10pt;
+  color: orange;
+  font-weight: bold;
+  text-decoration: none }
+a:alink {
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 10pt;
+  color: #66CCFF;
+  font-weight: bold;
+  text-decoration: none }
+a:visited {
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 10pt;
+  color: fuchsia;
+  font-weight: bold;
+  text-decoration: none }
+a:hover {
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 10pt;
+  color: red;
+  font-weight: bold;
+  text-decoration: underline } 
