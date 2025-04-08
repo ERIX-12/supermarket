@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CONTACT US</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: orange;
+    }
+    header {
+      background-color: blue;
+      color: white;
+      padding: 10px 0;
+    }
+    nav ul {
+      list-style: none;
+      padding: 10px;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      background-color: blue;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .contact-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin: 30px 0;
+    }
+    
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    table {
+      width: 100%;
+      max-width: 500px;
+      margin: 20px 0;
+    }
+    td {
+      padding: 10px;
+    }
+    input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="submit"], input[type="reset"] {
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: blue;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    input[type="reset"] {
+      background-color: #666;
+    }
+    input[type="submit"]:hover {
+      background-color: #0055cc;
+    }
+    input[type="reset"]:hover {
+      background-color: #444;
+    }
+    
+    #submitted-data {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+    }
+    .map-container {
+      margin: 30px 0;
+      width: 100%;
+    }
+    
+    #map {
+      height: 400px;
+      width: 100%;
+      border: 3px solid blue;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .contact-details {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .contact-details p {
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .contact-section {
+        flex-direction: column;
+      }
+      
+      #map {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Aboutpage.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact page.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <div class="container">
+    <h1>Contact Us</h1>
+    
+    <div class="contact-section">
+      <div class="contact-info">
+        <div class="contact-details">
+          <h2>Our Location</h2>
+          <p><strong>Address:</strong> 123 Supermarket Street, Asaba, Kyenjojo - kampala road,Uganda</p>
+          <p><strong>Phone:</strong> 0772998386 / 0701998386</p>
+          <p><strong>Email:</strong> info@asabaclassicsupermarket.com</p>
+          <p><strong>Opening Hours:</strong> Monday-Saturday: 8:00 AM - 9:00 PM, Sunday: 10:00 AM - 6:00 PM</p>
+        </div>
+        
+        <div class="map-container">
+          <h2>Find Us on Google Maps</h2>
+          <div id="map"></div>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <form id="contact-form">
+          <fieldset>
+            <legend>Personal Information</legend>
+            <table border="0" width="100%">
+              <tr>
+                <td><label for="name">NAME:</label></td>
+                <td><input type="text" id="name" name="name" required><br></td>
+              </tr>
+              <tr>
+                <td><label for="email">E-mail:</label></td>
+                <td><input type="email" id="email" name="email" required><br></td>
+              </tr>
+              <tr>
+                <td><label for="comment">Comment:</label></td>
+                <td><textarea name="comment" id="comment" rows="5" required></textarea></td>
+              </tr>
+              <tr>
+                <td><input type="submit" name="submit" value="Submit"></td>
+                <td><input type="reset" name="cancel" value="Cancel"></td>
+              </tr>
+            </table>
+          </fieldset>
+        </form>
+        <!-- Display submitted data here -->
+        <div id="submitted-data"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <!-- Google Maps API Script -->
+  <script>
+    // Initialize and display the map
+    function initMap() {
+      // Coordinates for Asaba Classic Supermarket (approximate)
+      const supermarketLocation = { lat: 0.61156, lng: 30.64391 };
+      
+      // Create a map centered at the supermarket location
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: supermarketLocation,
+        mapTypeId: "roadmap",
+      });
+      
+      // Add a marker at the supermarket location
+      new google.maps.Marker({
+        position: supermarketLocation,
+        map: map,
+        title: "Asaba Classic Supermarket",
+      });
+    }
+
+    // Error handling for Google Maps
+    window.gm_authFailure = function() {
+      document.getElementById('map').innerHTML = 
+        '<p style="padding:20px;color:red;">Google Maps could not be loaded. Please check your internet connection or try again later.</p>';
+    };
+  </script>
+
+  <!-- Load Google Maps API -->
+  <!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+  
+  <script>
+    // JavaScript to handle form submission and validation
+    document.getElementById('contact-form').addEventListener('submit', function (event) {
+      event.preventDefault(); 
+
+      // Get form values
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const comment = document.getElementById('comment').value.trim();
+
+      // Validate form fields
+      if (!name || !email || !comment) {
+        Swal.fire('Error', 'Please fill out all fields.', 'error');
+        return;
+      }
+
+      if (!validateEmail(email)) {
+        Swal.fire('Error', 'Please enter a valid email address.', 'error');
+        return;
+      }
+
+      // Display submitted data in an alert
+      const submittedMessage = `
+        Submitted Data
+        Name: ${name}
+        Email: ${email}
+        Comment: ${comment}
+      `;
+      Swal.fire('Success', 'Form submitted successfully!', 'success');
+
+      // Display submitted data on the page after the user presses "OK"
+      const submittedData = document.getElementById('submitted-data');
+      submittedData.innerHTML = `
+        <h2>Submitted Data:</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Comment:</strong> ${comment}</p>
+      `;
+    });
+
+    // Function to validate email format
+    function validateEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+  </script>
+</body>
+</html>
